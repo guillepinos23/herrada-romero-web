@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Herrada Abogados">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060f2a"/>
+      <stop offset="100%" stop-color="#0b1f4d"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+  <!-- Shield with letter H (clean mark) -->
+  <g fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 10c6 4 12 5 18 6v15c0 10-7.5 17-18 23C21.5 48 14 41 14 31V16c6-1 12-2 18-6z"/>
+  </g>
+  <g fill="#ffffff">
+    <!-- Stylized H inside shield -->
+    <path d="M25 22h4v8h6v-8h4v20h-4v-8h-6v8h-4z"/>
+  </g>
+</svg>
+

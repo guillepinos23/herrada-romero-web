@@ -18,6 +18,7 @@ export default <Partial<Config>>{
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Merriweather', 'Georgia', 'serif'],
       },
       borderRadius: {
         soft: '16px',
