@@ -2,7 +2,7 @@
     <!-- HEADER (dentro de la página para simplificar) -->
     <header class="sticky top-0 z-50 transition-transform duration-300 border-b" :class="[headerHidden ? '-translate-y-full' : 'translate-y-0', scrolled ? 'shadow-sm' : '', 'bg-blue-950/95 backdrop-blur border-blue-950']">
         <nav class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-            <a href="#inicio" class="flex items-center gap-2 group" aria-label="Ir al inicio">
+            <a href="#inicio" class="flex items-center gap-2 group" aria-label="Ir al inicio" @click.prevent="scrollToTop()">
                 <img src="/logo.svg" alt="Herrada Romero" class="h-7 w-7" />
                 <span class="font-display text-white group-hover:opacity-90">Herrada Romero</span>
             </a>
