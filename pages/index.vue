@@ -1,10 +1,10 @@
 <template>
     <!-- HEADER (dentro de la página para simplificar) -->
-    <header class="sticky top-0 z-50 transition-transform duration-300 border-b" :class="[headerHidden ? '-translate-y-full' : 'translate-y-0', scrolled ? 'shadow-sm' : '', 'bg-blue-950/95 backdrop-blur border-blue-950']">
+    <header class="sticky top-0 z-50 transition-transform duration-300 border-b" :class="[headerHidden ? '-translate-y-full' : 'translate-y-0', scrolled ? 'shadow-sm' : '', 'backdrop-blur bg-white/90 border-gray-200 md:bg-blue-950/95 md:border-blue-950']">
         <nav class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-2 group" aria-label="Ir al inicio" @click.prevent="scrollToTop()">
                 <img src="/logo.svg" alt="Herrada Romero" class="h-7 w-7" />
-                <span class="font-display text-white group-hover:opacity-90">Herrada Romero</span>
+                <span class="font-display text-gray-900 md:text-white group-hover:opacity-90">Herrada Romero</span>
             </a>
             <button class="lg:hidden p-3 rounded-md border border-gray-300" @click="open = !open"
                 aria-label="Abrir menú">☰</button>
@@ -17,13 +17,13 @@
         </nav>
 
         <!-- menú móvil -->
-        <div v-if="open" class="lg:hidden border-t border-blue-900 bg-blue-950">
-            <ul class="max-w-6xl mx-auto px-4 py-2 space-y-1 text-white/90">
-                <li><a @click="open = false; scrollToTop()" href="#inicio" class="block py-3 hover:text-white">Inicio</a></li>
-                <li><a @click="open = false" href="#quienes" class="block py-3 hover:text-white">Quiénes somos</a></li>
-                <li><a @click="open = false" href="#servicios" class="block py-3 hover:text-white">Servicios</a></li>
-                <li><a @click="open = false" href="#contacto" class="block py-3 hover:text-white">Contacto</a></li>
-                <li><a @click="open = false" href="#ubicacion" class="block py-3 hover:text-white">Ubicación</a></li>
+        <div v-if="open" class="lg:hidden border-t border-gray-200 bg-white">
+            <ul class="max-w-6xl mx-auto px-4 py-2 space-y-1 text-gray-800">
+                <li><a @click="open = false; scrollToTop()" href="#inicio" class="block py-3 hover:text-blue-950">Inicio</a></li>
+                <li><a @click="open = false" href="#quienes" class="block py-3 hover:text-blue-950">Quiénes somos</a></li>
+                <li><a @click="open = false" href="#servicios" class="block py-3 hover:text-blue-950">Servicios</a></li>
+                <li><a @click="open = false" href="#contacto" class="block py-3 hover:text-blue-950">Contacto</a></li>
+                <li><a @click="open = false" href="#ubicacion" class="block py-3 hover:text-blue-950">Ubicación</a></li>
             </ul>
         </div>
     </header>
