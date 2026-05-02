@@ -1,32 +1,33 @@
+import nodemailer from 'nodemailer'
+
 export default defineEventHandler(async (event) => {
-  const { default: nodemailer } = await import('nodemailer')
-  try {
-    const body = await readBody<{ nombre: string; email: string; mensaje: string }>(event)
-    if (!body?.nombre || !body?.email || !body?.mensaje) {
-      throw createError({ statusCode: 400, statusMessage: 'Datos incompletos' })
-    }
+  const { nombre, email, mensaje } = await readBody(event)
 
-    const config = useRuntimeConfig()
-    const transporter = nodemailer.createTransport({
-      host: String(config.mailHost),
-      port: Number(config.mailPort ?? 587),
-      secure: Number(config.mailPort) === 465,
-      auth: { user: String(config.mailUser), pass: String(config.mailPass) },
-    })
-
-    const to = String(config.mailTo || config.mailUser)
-    await transporter.sendMail({
-      from: `Web HR <${String(config.mailUser)}>`,
-      to,
-      subject: `Nueva consulta: ${body.nombre}`,
-      replyTo: body.email,
-      text: `${body.nombre} <${body.email}>\n\n${body.mensaje}`,
-    })
-
-    return { ok: true }
-  } catch (err: any) {
-    throw createError({ statusCode: err?.statusCode || 500, statusMessage: err?.statusMessage || 'Error al enviar' })
+  if (!nombre || !email || !mensaje) {
+    throw createError({ statusCode: 400, statusMessage: 'Faltan campos obligatorios' })
   }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  })
+
+  await transporter.sendMail({
+    from: `"Web Herrada Romero" <${process.env.GMAIL_USER}>`,
+    to: process.env.GMAIL_USER,
+    replyTo: email,
+    subject: `Consulta web de ${nombre}`,
+    html: `
+      <h2>Nueva consulta desde la web</h2>
+      <p><strong>Nombre:</strong> ${nombre}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p>${mensaje.replace(/\n/g, '<br>')}</p>
+    `,
+  })
+
+  return { ok: true }
 })
-
-

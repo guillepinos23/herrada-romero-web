@@ -190,7 +190,9 @@
                             {{ loading ? 'Enviando…' : 'Enviar' }}
                         </button>
                         <p v-if="sent" class="text-sm text-blue-800">Gracias. Te responderemos en breve.</p>
-                        <p v-if="error" class="text-sm text-red-600">No se ha podido enviar. Inténtalo de nuevo.</p>
+                        <p v-if="error" class="text-sm text-red-600">
+                            {{ errorMessage || 'No se ha podido enviar. Inténtalo de nuevo.' }}
+                        </p>
                     </form>
 
                     <div class="space-y-4">
@@ -327,12 +329,15 @@ const form = reactive({ nombre: '', email: '', mensaje: '' })
 const loading = ref(false)
 const sent = ref(false)
 const error = ref(false)
+const errorMessage = ref('')
 const submitForm = async () => {
     if (loading.value) return
     loading.value = true
     error.value = false
+    errorMessage.value = ''
     try {
-        await $fetch('/api/contact', { method: 'POST', body: form })
+        // Pasamos un objeto plano para evitar problemas con el proxy de `reactive`
+        await $fetch('/api/contact', { method: 'POST', body: { ...form } })
         sent.value = true
         form.nombre = ''
         form.email = ''
@@ -340,6 +345,8 @@ const submitForm = async () => {
         setTimeout(() => (sent.value = false), 4000)
     } catch (e) {
         error.value = true
+        // $fetch suele devolver detalles en `e.data`
+        errorMessage.value = (e as any)?.data?.statusMessage || (e as any)?.message
         setTimeout(() => (error.value = false), 4000)
     } finally {
         loading.value = false
