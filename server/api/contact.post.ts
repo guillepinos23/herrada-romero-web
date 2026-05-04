@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer'
 
 export default defineEventHandler(async (event) => {
-  const { nombre, email, mensaje } = await readBody(event)
+  const { nombre, email, telefono, mensaje } = await readBody(event)
 
-  if (!nombre || !email || !mensaje) {
+  if (!nombre || !email || !telefono || !mensaje) {
     throw createError({ statusCode: 400, statusMessage: 'Faltan campos obligatorios' })
   }
 
@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
       <h2>Nueva consulta desde la web</h2>
       <p><strong>Nombre:</strong> ${nombre}</p>
       <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Teléfono:</strong> ${telefono}</p>
       <p><strong>Mensaje:</strong></p>
       <p>${mensaje.replace(/\n/g, '<br>')}</p>
     `,

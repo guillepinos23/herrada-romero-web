@@ -180,6 +180,11 @@
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900" />
                         </div>
                         <div>
+                            <label class="block text-sm text-gray-800 mb-1">Teléfono <span class="text-gray-400">(opcional)</span></label>
+                            <input v-model="form.telefono" type="tel"
+                                class="w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900" />
+                        </div>  
+                        <div>
                             <label class="block text-sm text-gray-800 mb-1">Mensaje</label>
                             <textarea v-model="form.mensaje" rows="5" required
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900"></textarea>
@@ -325,7 +330,7 @@ const services = [
     { t: 'Compliance', d: 'Riesgos, códigos de conducta, formación y auditoría.' },
 ]
 
-const form = reactive({ nombre: '', email: '', mensaje: '' })
+const form = reactive({ nombre: '', email: '', telefono: '', mensaje: '' })
 const loading = ref(false)
 const sent = ref(false)
 const error = ref(false)
@@ -341,6 +346,7 @@ const submitForm = async () => {
         sent.value = true
         form.nombre = ''
         form.email = ''
+        form.telefono = ''
         form.mensaje = ''
         setTimeout(() => (sent.value = false), 4000)
     } catch (e) {
