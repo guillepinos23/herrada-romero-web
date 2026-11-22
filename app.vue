@@ -1,6 +1,5 @@
 
-<!-- WEB ORIGINAL - DESCOMENTAR PARA RESTAURAR
-
+<!-- WEB ORIGINAL - GUARDADA PARA RESTAURAR
 <template>
   <div class="min-h-screen relative bg-gradient-to-b from-slate-50 to-slate-100 scroll-smooth">
     <div class="pointer-events-none absolute inset-0 opacity-60">
@@ -11,7 +10,6 @@
     </div>
   </div>
 </template>
-
 -->
 
 <script setup>
@@ -21,19 +19,73 @@ useHead({
 </script>
 
 <template>
-  <main class="min-h-screen flex items-center justify-center bg-slate-950 px-6 text-white">
-    <div class="max-w-xl text-center">
-      <div class="text-5xl mb-8">⚖️</div>
-      <h1 class="text-4xl font-bold mb-5">
-        Herrada Romero Abogados
-      </h1>
-      <h2 class="text-xl mb-4">
-        Página temporalmente fuera de servicio
-      </h2>
-      <p class="text-slate-400">
-        Estamos realizando tareas de mantenimiento.
+  <main class="mantenimiento">
+    <div class="contenido">
+      <div class="icono">⚖️</div>
+
+      <h1>Herrada Romero Abogados</h1>
+
+      <div class="separador"></div>
+
+      <h2>Página temporalmente fuera de servicio</h2>
+
+      <p>
+        Estamos realizando tareas de mantenimiento
+        en nuestra página web.
         Disculpen las molestias.
       </p>
     </div>
   </main>
 </template>
+
+<style>
+html, body, #__nuxt {
+  margin: 0;
+  min-height: 100%;
+}
+
+.mantenimiento {
+  min-height: 100vh;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.contenido {
+  max-width: 650px;
+  text-align: center;
+}
+
+.icono {
+  font-size: 55px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 25px;
+}
+
+.separador {
+  width: 80px;
+  height: 3px;
+  background: #d4af37;
+  margin: 0 auto 35px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+p {
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+</style>
